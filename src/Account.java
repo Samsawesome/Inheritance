@@ -1,17 +1,23 @@
-import java.util.Scanner;
 
 public abstract class Account {
-	public abstract void Account(String[] name, double[] money);
 	
-	public  void NewAccount(String newName, boolean accountType){
-		Scanner scan = new Scanner(System.in);
+	protected String name;
+	protected double balance;
+	
+	public Account(String name, double money) {
+		this.name = name;
+		balance = money;
 	}
-	public void ExsistingAccount(String exsistingName){
-		Scanner scan = new Scanner(System.in);
+	
+	public double getBalance() {
+		return balance;
 	}
-	public abstract double Deposit(double deposit);
-	public abstract double Withdraw(double withdraw);
-	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
+	
+	public double deposit(double deposit) {
+		return balance += deposit;
+	}
+	
+	public double withdraw(double withdraw) {
+		return balance -= withdraw;
 	}
 }

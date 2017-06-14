@@ -1,22 +1,25 @@
-import java.util.Scanner;
 
 public class Savings extends Account {
-	public void Account(String[] name, double[] money){
-		name[0] = "George Washington"; money [0] = 1000000.00;
-		name[1] = "Sam Slane"; money [1] = 10.00;
-		name[2] = "A Person"; money [2] = 0;
+	private double interestRate;
+	private int withdrawals;
+	private final int WITHDRAWAL_LIMIT = 6;
+	
+	// overrides Account constructor
+	public Savings (String name, double money, double interestRate) {
+		super(name, money);
+		this.interestRate = interestRate;
+		withdrawals = 0;
 	}
 	
+	// overrides Account.withdraw
+	public double withdraw (double withdraw) {
+		withdrawals++;
+		if (withdrawals > WITHDRAWAL_LIMIT)
+			balance--; // transaction fee
+		return super.withdraw(withdraw);
+	}
 	
-	public double Deposit(double deposit) {
-		Scanner scan = new Scanner(System.in);
-		return 5;
-	}
-	public double Withdraw(double withdraw) {
-		Scanner scan = new Scanner(System.in);
-		return 5;
-	}
-	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
+	public double generateInterest () {
+		return balance += balance * interestRate / 12;
 	}
 }
