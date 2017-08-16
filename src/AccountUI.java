@@ -24,6 +24,7 @@ public class AccountUI extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtName;
 	private JTable tableAccounts;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -54,7 +55,7 @@ public class AccountUI extends JFrame {
 		
 		JButton btnNew = new JButton("New");
 		btnNew.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		btnNew.setBounds(12, 484, 411, 56);
+		btnNew.setBounds(12, 410, 411, 56);
 		btnNew.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 			
@@ -64,7 +65,7 @@ public class AccountUI extends JFrame {
 		
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		btnDelete.setBounds(453, 484, 401, 56);
+		btnDelete.setBounds(458, 410, 401, 56);
 		btnDelete.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 			
@@ -75,19 +76,19 @@ public class AccountUI extends JFrame {
 		JRadioButton rdbtnChecking = new JRadioButton("Checking Account");
 		rdbtnChecking.setEnabled(false);
 		rdbtnChecking.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		rdbtnChecking.setBounds(136, 445, 225, 25);
+		rdbtnChecking.setBounds(138, 376, 225, 25);
 		contentPane.add(rdbtnChecking);
 		
 		JRadioButton rdbtnSavings = new JRadioButton("Savings Account");
 		rdbtnSavings.setEnabled(false);
 		rdbtnSavings.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		rdbtnSavings.setBounds(551, 445, 232, 25);
+		rdbtnSavings.setBounds(512, 376, 232, 25);
 		contentPane.add(rdbtnSavings);
 		
 		txtName = new JTextField();
 		txtName.setEnabled(false);
 		txtName.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		txtName.setBounds(111, 346, 647, 89);
+		txtName.setBounds(111, 278, 273, 89);
 		contentPane.add(txtName);
 		txtName.setColumns(10);
 		
@@ -95,7 +96,7 @@ public class AccountUI extends JFrame {
 		//ask how to get text to wrap so it doesnt just go in a line
 		lblQuestion.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblQuestion.setVerticalAlignment(SwingConstants.TOP);
-		lblQuestion.setBounds(111, 277, 647, 56);
+		lblQuestion.setBounds(111, 209, 647, 56);
 		contentPane.add(lblQuestion);
 		
 		tableAccounts = new JTable();
@@ -105,6 +106,29 @@ public class AccountUI extends JFrame {
 		tableAccounts.setCellSelectionEnabled(true);
 		tableAccounts.setBounds(111, 26, 647, 170);
 		contentPane.add(tableAccounts);
+		
+		textField = new JTextField();
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		textField.setEnabled(false);
+		textField.setColumns(10);
+		textField.setBounds(485, 278, 273, 89);
+		contentPane.add(textField);
+		
+		JButton btnDeposit = new JButton("Deposit");
+		btnDeposit.setEnabled(false);
+		btnDeposit.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		btnDeposit.setBounds(12, 484, 411, 56);
+		contentPane.add(btnDeposit);
+		
+		JButton btnWithdraw = new JButton("Withdraw");
+		btnWithdraw.setEnabled(false);
+		btnWithdraw.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnWithdraw.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		btnWithdraw.setBounds(458, 484, 401, 56);
+		contentPane.add(btnWithdraw);
 		
 	}
 }
