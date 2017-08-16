@@ -5,8 +5,8 @@ public class Savings extends Account {
 	private final int WITHDRAWAL_LIMIT = 6;
 	
 	// overrides Account constructor
-	public Savings (String name, double money, int age, boolean canHaveAccount, double interestRate) {
-		super(name, money, age, canHaveAccount);
+	public Savings (String name, double money, int age, double interestRate) {
+		super(name, money, age);
 		this.interestRate = interestRate;
 		withdrawals = 0;
 	}

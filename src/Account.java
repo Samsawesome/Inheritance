@@ -5,12 +5,13 @@ public abstract class Account {
 	protected double balance;
 	protected int age;
 	protected boolean canHaveAccount;
+	protected final int FEE = 10;
 	
-	public Account(String name, double money, int age, boolean canHaveAccount) {
+	public Account(String name, double money, int age){
 		this.name = name;
 		balance = money;
 		this.age = age;
-		this.canHaveAccount = canHaveAccount;
+		this.canHaveAccount = true;
 	}
 	
 	public double getBalance() {
