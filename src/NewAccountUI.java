@@ -1,6 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,6 +22,7 @@ public class NewAccountUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtName;
+	private Account result;
 
 	/**
 	 * Launch the application.
@@ -75,8 +78,31 @@ public class NewAccountUI extends JFrame {
 		JButton btnOkay = new JButton("Okay");
 		btnOkay.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btnOkay.setBounds(22, 165, 698, 75);
+		btnOkay.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				if(spinner_age.getValue().equals(0)  || txtName.getText().equals("")){
+					lblPromt.setText("Please fill out your name and age.");
+				}
+				else if((Integer) spinner_age.getValue() <= 17 && spinner_type_account.getValue().equals("Checking")){
+					lblPromt.setText("You can not have a checking account if you are less than 18 years old.");
+				}
+				else {
+					if(spinner_type_account.getValue().equals("Checking")){
+						result = new Checking(txtName.getText(), 0, (Integer) spinner_age.getValue());
+					} 
+					else result = new Savings(txtName.getText(), 0, (Integer) spinner_age.getValue(), 0.01);
+					setVisible(false);
+					dispose();
+				}
+			}
+		});		
+		//if you hit okay make it check that there is filled out requirments in each thing and if there isnt tell them to fill it out
 		contentPane.add(btnOkay);
 		
-		
+	}
+	
+	Account showDialog(){
+		setVisible(true);
+		return result;
 	}
 }

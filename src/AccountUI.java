@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
-
+//want this class and newaccountUI to be sister classes??? so they share variables and such
 public class AccountUI extends JFrame {
 	private Account getBalance;
 	private Account deposit;
@@ -58,7 +60,9 @@ public class AccountUI extends JFrame {
 		btnNew.setBounds(12, 410, 411, 56);
 		btnNew.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-			
+				NewAccountUI newAccountWindow = new NewAccountUI();
+				Account result = newAccountWindow.showDialog();
+				System.out.println(result);
 			}
 		});		
 		contentPane.add(btnNew);
