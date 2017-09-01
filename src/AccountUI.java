@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JRadioButton;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -26,7 +27,9 @@ public class AccountUI extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtName;
 	private JTable tableAccounts;
-	private JTextField textField;
+	protected JSpinner spinner_type_account;
+	protected JSpinner spinner_age;
+	private static JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -35,7 +38,7 @@ public class AccountUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AccountUI frame = new AccountUI();
+					AccountUI frame = new AccountUI(null, null, textField);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +50,10 @@ public class AccountUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AccountUI() {
+	public AccountUI(JSpinner spinner_type_account, JSpinner spinner_age, JTextField txtEnterName) {
+		this.spinner_age = spinner_age;
+		this.txtName = txtName;
+		this.spinner_type_account = spinner_type_account;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 600);
 		contentPane = new JPanel();
@@ -60,9 +66,12 @@ public class AccountUI extends JFrame {
 		btnNew.setBounds(12, 410, 411, 56);
 		btnNew.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				NewAccountUI newAccountWindow = new NewAccountUI();
+				NewAccountUI newAccountWindow = new NewAccountUI(spinner_age, spinner_age, txtEnterName);
 				Account result = newAccountWindow.showDialog();
 				System.out.println(result);
+				if(spinner_type_account.equals("checking")){
+					
+				}
 			}
 		});		
 		contentPane.add(btnNew);

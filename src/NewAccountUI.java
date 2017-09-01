@@ -18,10 +18,10 @@ import javax.swing.SpinnerListModel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-public class NewAccountUI extends JFrame {
+public class NewAccountUI extends AccountUI {
 
 	private JPanel contentPane;
-	private JTextField txtName;
+	private static JTextField txtEnterName;
 	private Account result;
 
 	/**
@@ -31,7 +31,7 @@ public class NewAccountUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NewAccountUI frame = new NewAccountUI();
+					NewAccountUI frame = new NewAccountUI(null, null, txtEnterName);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +43,12 @@ public class NewAccountUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public NewAccountUI() {
+	public NewAccountUI(JSpinner spinner_type_account, JSpinner spinner_age, JTextField txtName) {
+		super(spinner_type_account, spinner_age, txtEnterName);
+		this.spinner_age = spinner_age;
+		this.txtEnterName = txtEnterName;
+		this.spinner_type_account = spinner_type_account;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 750, 300);
 		contentPane = new JPanel();
@@ -51,20 +56,20 @@ public class NewAccountUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		txtName = new JTextField();
-		txtName.setBounds(12, 109, 367, 43);
-		txtName.setEnabled(true);
-		txtName.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		contentPane.add(txtName);
-		txtName.setColumns(10);
+		txtEnterName = new JTextField();
+		txtEnterName.setBounds(12, 109, 367, 43);
+		txtEnterName.setEnabled(true);
+		txtEnterName.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		contentPane.add(txtEnterName);
+		txtEnterName.setColumns(10);
 		
-		JSpinner spinner_age = new JSpinner();
+		 
 		spinner_age.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		spinner_age.setModel(new SpinnerNumberModel(0, 0, 125, 1));
 		spinner_age.setBounds(415, 107, 126, 43);
 		contentPane.add(spinner_age);
 		
-		JSpinner spinner_type_account = new JSpinner();
+		
 		spinner_type_account.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		spinner_type_account.setModel(new SpinnerListModel(new String[] {"Checking", "Savings"}));
 		spinner_type_account.setBounds(585, 107, 135, 43);
@@ -80,7 +85,7 @@ public class NewAccountUI extends JFrame {
 		btnOkay.setBounds(22, 165, 698, 75);
 		btnOkay.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				if(spinner_age.getValue().equals(0)  || txtName.getText().equals("")){
+				if(spinner_age.getValue().equals(0)  || txtEnterName.getText().equals("")){
 					lblPromt.setText("Please fill out your name and age.");
 				}
 				else if((Integer) spinner_age.getValue() <= 17 && spinner_type_account.getValue().equals("Checking")){
@@ -88,9 +93,10 @@ public class NewAccountUI extends JFrame {
 				}
 				else {
 					if(spinner_type_account.getValue().equals("Checking")){
-						result = new Checking(txtName.getText(), 0, (Integer) spinner_age.getValue());
+						result = new Checking(txtEnterName.getText(), 0, (Integer) spinner_age.getValue());
 					} 
-					else result = new Savings(txtName.getText(), 0, (Integer) spinner_age.getValue(), 0.01);
+					else result = new Savings(txtEnterName.getText(), 0, (Integer) spinner_age.getValue(), 0.01);
+					
 					setVisible(false);
 					dispose();
 				}
